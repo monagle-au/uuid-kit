@@ -2,27 +2,27 @@ import XCTest
 @testable import UUIDKit
 
 final class UUIDv1Tests: XCTestCase {
-    func testVariantAndVersion() {
-        let uuid = UUID.v1()
+    func testVariantAndVersion() async {
+        let uuid = await UUID.v1()
         XCTAssertEqual(uuid.variant, .rfc4122)
         XCTAssertEqual(uuid.version, 1)
     }
     
-    func testNodeIsRandom() {
-        let uuid = UUID.v1()
+    func testNodeIsRandom() async {
+        let uuid = await UUID.v1()
         XCTAssertEqual(uuid.uuid.10 & 0x1, 1)
     }
     
-    func testNodeIsConstant() {
-        let lhs = UUIDv1()
-        let rhs = UUIDv1()
+    func testNodeIsConstant() async {
+        let lhs = await UUIDv1()
+        let rhs = await UUIDv1()
         XCTAssertNotEqual(lhs, rhs)
         XCTAssertEqual(lhs.node, rhs.node)
     }
     
-    func testTimestampIsAscending() {
-        let lhs = UUIDv1()
-        let rhs = UUIDv1()
+    func testTimestampIsAscending() async {
+        let lhs = await UUIDv1()
+        let rhs = await UUIDv1()
         XCTAssertLessThan(lhs.timestamp, rhs.timestamp)
     }
     

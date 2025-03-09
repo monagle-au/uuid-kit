@@ -1,7 +1,7 @@
 import Foundation
 
 extension UUIDv1 {
-    public struct Node: Hashable, RawRepresentable {
+    public struct Node: Sendable, Hashable, RawRepresentable {
         public init<T>(truncatingIfNeeded source: T) where T: BinaryInteger {
             self.rawValue = UInt64(truncatingIfNeeded: source) & ~(.max << 48)
         }

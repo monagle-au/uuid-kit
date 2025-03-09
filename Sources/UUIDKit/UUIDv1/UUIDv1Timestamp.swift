@@ -1,7 +1,7 @@
 import Foundation
 
 extension UUIDv1 {
-    public struct Timestamp: Comparable, Hashable, RawRepresentable {
+    public struct Timestamp: Sendable, Comparable, Hashable, RawRepresentable {
         public init<T>(truncatingIfNeeded source: T) where T: BinaryInteger {
             rawValue = UInt64(truncatingIfNeeded: source) & ~(.max << 60)
         }
