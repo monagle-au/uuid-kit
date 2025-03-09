@@ -5,7 +5,7 @@ extension UUID {
     ///
     /// You can generate a new UUID as a namespace or use one of the pre-defined values
     /// (`.dns`, `.url`, `.oid` or `.x500`).
-    public struct Namespace: Codable, Hashable, LosslessStringConvertible, RawRepresentable {
+    public struct Namespace: Sendable, Codable, Hashable, LosslessStringConvertible, RawRepresentable {
         /// Creates a namespace with the specified UUID.
         ///
         /// - parameter uuid: The UUID to use as the namespace.

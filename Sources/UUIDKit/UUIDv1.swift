@@ -12,18 +12,14 @@ extension UUID {
     /// - warning: Though randomly-generated, the node identifier is the same for all UUIDs created
     ///            using this method. If you wish to hide the provenance of the UUIDs, you should
     ///            use a different method.
-    public static func v1() -> UUID {
-        UUIDv1().rawValue
+    public static func v1() async -> UUID {
+        await UUIDv1().rawValue
     }
 }
 
 public struct UUIDv1: Codable, Hashable, LosslessStringConvertible, RawRepresentable {
-    public init() {
-        self.init(node: .current)
-    }
-    
-    public init(node: Node) {
-        let (timestamp, clockSequence) = Clock.default.next()
+    public init(node: Node = .current) async {
+        let (timestamp, clockSequence) = await Clock.default.next()
         self.init(timestamp: timestamp, clockSequence: clockSequence, node: node)
     }
     

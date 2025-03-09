@@ -1,7 +1,7 @@
 import Foundation
 
 extension UUIDv1 {
-    public struct ClockSequence: Hashable, RawRepresentable {
+    public struct ClockSequence: Sendable, Hashable, RawRepresentable {
         public init<T>(truncatingIfNeeded source: T) where T: BinaryInteger {
             self.rawValue = UInt16(truncatingIfNeeded: source) & ~(.max << 14)
         }
